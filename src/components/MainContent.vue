@@ -14,18 +14,23 @@
       </p>
     </section>
 
+    <SelectIngredients />
+
     
   </main>
 </template>
 
 <script lang="ts">
+import SelectIngredients from './SelectIngredients.vue';
+
 
 export default {
-  data() {
-    return {
-      ingredientes: ['Alho', 'Manteiga', 'Orégano', 'Sal']
-    }
-  }
+    data() {
+        return {
+            ingredientes: ['Alho', 'Manteiga', 'Orégano', 'Sal']
+        };
+    },
+    components: { SelectIngredients }
 }
 </script>
 
