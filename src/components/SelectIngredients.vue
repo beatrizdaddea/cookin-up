@@ -17,13 +17,17 @@
 
 <script lang="ts">
 
-import { obterCategorias } from '@/http/index';
+import { getCategories } from '@/http/index';
+import type ICategory from '@/interfaces/ICategory';
 
 export default {
   data() {
     return {
-      categorias: obterCategorias()
+      categorias: [] as ICategory[]
     }
+  },
+  async created() {
+    this.categorias = await getCategories();
   }
 }
 </script>
