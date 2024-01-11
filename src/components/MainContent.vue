@@ -27,7 +27,7 @@ import SelectIngredients from './SelectIngredients.vue';
 export default {
     data() {
         return {
-            ingredientes: ['Alho', 'Manteiga', 'Orégano', 'Sal']
+            ingredientes: ['Alho', 'Manteiga', 'Orégano', 'Ovos']
         };
     },
     components: { SelectIngredients }
