@@ -5,7 +5,7 @@
       <p class="paragrafo-lg instrucoes"> Selecione abaixo os ingredientes que você quer usar nesta receita: </p>
       <ul class="categorias">
         <li v-for="categoria in categorias" :key="categoria.nome">
-          {{ categoria.nome }}
+          <CategoryCard :categoria="categoria"/>
         </li>
       </ul>
       <p class="paragrafo dica">
@@ -19,16 +19,18 @@
 
 import { getCategories } from '@/http/index';
 import type ICategory from '@/interfaces/ICategory';
+import CategoryCard from './CategoryCard.vue';
 
 export default {
-  data() {
-    return {
-      categorias: [] as ICategory[]
-    }
-  },
-  async created() {
-    this.categorias = await getCategories();
-  }
+    data() {
+        return {
+            categorias: [] as ICategory[]
+        };
+    },
+    async created() {
+        this.categorias = await getCategories();
+    },
+    components: { CategoryCard }
 }
 </script>
 
