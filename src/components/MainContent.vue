@@ -12,17 +12,22 @@
         <img src="../assets/images/icones/categorias_ingredientes/lista-vazia.svg" alt="Ícone de pesquisa">
         Sua lista está vazia, selecione ingredientes para iniciar.
       </p>
+  
     </section>
+    
+    <SelectIngredients
+     @add-ingredient="addIngredient" 
+     @remove-ingredient="removeIngredient" 
+     />
+     <MainButton texto="Buscar receitas!" />
 
-    <SelectIngredients 
-    @adicionar-ingrediente="adicionarIngrediente"
-    />
   </main>
 </template>
 
 <script lang="ts">
 import SelectIngredients from './SelectIngredients.vue';
 import Tag from './Tag.vue';
+import MainButton from './MainButton.vue';
 
 
 export default {
@@ -33,8 +38,11 @@ export default {
   },
   components: { SelectIngredients, Tag },
   methods: {
-    adicionarIngrediente(ingrediente: string) {
+    addIngredient(ingrediente: string) {
       this.ingredientes.push(ingrediente)
+    },
+    removeIngredient(ingrediente: string) {
+      this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
     }
   }
 }

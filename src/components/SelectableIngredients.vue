@@ -24,12 +24,14 @@ export default {
 			this.selected = !this.selected
 
 			if (this.selected) {
-				this.$emit('adicionarIngrediente', this.ingrediente)
+				this.$emit('addIngredient', this.ingrediente)
+			} else {
+				this.$emit('removeIngredient', this.ingrediente);
 			}
 		},
 	},
 
-	emits:['adicionarIngrediente']
+	emits: ['addIngredient', 'removeIngredient']
 }
 </script>
 

@@ -12,9 +12,10 @@
     <ul class="categoria__ingredientes">
       <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
         <SelectableIngredients 
-        :ingrediente="ingrediente" 
-        @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
-        /> 
+        :ingrediente="ingrediente"
+        @add-ingredient="$emit('addIngredient', $event)" 
+        @remove-ingredient="$emit('removeIngredient', $event)" 
+        />
       </li>
     </ul>
   </article>
@@ -31,7 +32,7 @@ export default {
     categoria: { type: Object as PropType<ICategory>, required: true }
   },
   components: { Tag, SelectableIngredients },
-	emits:['adicionarIngrediente']
+  emits: ['addIngredient', 'removeIngredient']
 }
 </script>
 
