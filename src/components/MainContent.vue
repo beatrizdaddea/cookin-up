@@ -9,14 +9,14 @@
       </ul>
 
       <p v-else class="paragrafo lista-vazia">
-        <img src="../assets/images/icones/lista-vazia.svg" alt="Ícone de pesquisa">
+        <img src="../assets/images/icones/categorias_ingredientes/lista-vazia.svg" alt="Ícone de pesquisa">
         Sua lista está vazia, selecione ingredientes para iniciar.
       </p>
     </section>
 
-    <SelectIngredients />
-
-
+    <SelectIngredients 
+    @adicionar-ingrediente="adicionarIngrediente"
+    />
   </main>
 </template>
 
@@ -28,10 +28,15 @@ import Tag from './Tag.vue';
 export default {
   data() {
     return {
-      ingredientes: ['Alho', 'Manteiga', 'Orégano', 'Ovos']
+      ingredientes: [] as string[]
     };
   },
-  components: { SelectIngredients, Tag }
+  components: { SelectIngredients, Tag },
+  methods: {
+    adicionarIngrediente(ingrediente: string) {
+      this.ingredientes.push(ingrediente)
+    }
+  }
 }
 </script>
 

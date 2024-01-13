@@ -5,7 +5,10 @@
       <p class="paragrafo-lg instrucoes"> Selecione abaixo os ingredientes que você quer usar nesta receita: </p>
       <ul class="categorias">
         <li v-for="categoria in categorias" :key="categoria.nome">
-          <CategoryCard :categoria="categoria"/>
+          <CategoryCard 
+          :categoria="categoria"
+          @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
+          />
         </li>
       </ul>
       <p class="paragrafo dica">
@@ -30,7 +33,9 @@ export default {
     async created() {
         this.categorias = await getCategories();
     },
-    components: { CategoryCard }
+    components: { CategoryCard },
+	  emits:['adicionarIngrediente'],
+
 }
 </script>
 

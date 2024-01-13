@@ -11,7 +11,10 @@
     </header>
     <ul class="categoria__ingredientes">
       <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-        <Tag :texto="ingrediente" />
+        <SelectableIngredients 
+        :ingrediente="ingrediente" 
+        @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
+        /> 
       </li>
     </ul>
   </article>
@@ -21,12 +24,14 @@
 import type ICategory from '@/interfaces/ICategory';
 import type { PropType } from 'vue';
 import Tag from './Tag.vue';
+import SelectableIngredients from './SelectableIngredients.vue';
 
 export default {
   props: {
     categoria: { type: Object as PropType<ICategory>, required: true }
   },
-  components: { Tag }
+  components: { Tag, SelectableIngredients },
+	emits:['adicionarIngrediente']
 }
 </script>
 
