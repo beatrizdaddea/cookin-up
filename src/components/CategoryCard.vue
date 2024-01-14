@@ -2,7 +2,7 @@
 <template>
   <article class="categoria">
     <header class="categoria__cabecalho">
-      <img :src="`src/assets/images/icones/categorias_ingredientes/${categoria.imagem}`" alt="teste"
+      <img :src="`src/assets/images/icones/categorias_ingredientes/${categoria.imagem}`" alt=""
         class="categoria__imagem">
 
       <h2 class="paragrafo-lg categoria__nome">

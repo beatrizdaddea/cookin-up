@@ -5,16 +5,14 @@
       <p class="paragrafo-lg instrucoes"> Selecione abaixo os ingredientes que você quer usar nesta receita: </p>
       <ul class="categorias">
         <li v-for="categoria in categorias" :key="categoria.nome">
-          <CategoryCard :categoria="categoria" 
-          @add-ingredient="$emit('addIngredient', $event)" 
-        @remove-ingredient="$emit('removeIngredient', $event)" 
-
-          />
+          <CategoryCard :categoria="categoria" @add-ingredient="$emit('addIngredient', $event)"
+            @remove-ingredient="$emit('removeIngredient', $event)" />
         </li>
       </ul>
       <p class="paragrafo dica">
         *Atenção: consideramos que você tem em casa sal, pimenta e água.
       </p>
+      <MainButton texto="Buscar receitas!" @click="$emit('findRecipes')" />
     </section>
   </div>
 </template>
@@ -35,7 +33,7 @@ export default {
     this.categorias = await getCategories();
   },
   components: { CategoryCard },
-  emits: ['addIngredient', 'removeIngredient'],
+  emits: ['addIngredient', 'removeIngredient', 'findRecipes'],
 
 }
 </script>

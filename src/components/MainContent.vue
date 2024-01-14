@@ -1,48 +1,47 @@
 <template>
   <main class="conteudo-principal">
     <section>
-      <span class="subtitulo-lg sua-lista-texto"> Sua Lista: </span>
-      <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
-        <li v-for="ingrediente in ingredientes" :key="ingrediente">
-          <Tag :texto="ingrediente" active />
-        </li>
-      </ul>
-
-      <p v-else class="paragrafo lista-vazia">
-        <img src="../assets/images/icones/categorias_ingredientes/lista-vazia.svg" alt="Ícone de pesquisa">
-        Sua lista está vazia, selecione ingredientes para iniciar.
-      </p>
-  
+      <YourList :ingredientes="ingredientes" />
     </section>
     
     <SelectIngredients
+     v-if="content === 'SelectIngredients'"
      @add-ingredient="addIngredient" 
      @remove-ingredient="removeIngredient" 
+     @find-recipes="navigate('ShowRecipes')"
      />
-     <MainButton texto="Buscar receitas!" />
-
+     <ShowRecipes
+        v-else-if="content === 'ShowRecipes'"
+        @editar-receitas="navigate('SelectIngredients')"
+      />
   </main>
 </template>
 
 <script lang="ts">
 import SelectIngredients from './SelectIngredients.vue';
 import Tag from './Tag.vue';
-import MainButton from './MainButton.vue';
+import YourList from './YourList.vue';
+import ShowRecipes from './ShowRecipes.vue';
 
+type Page = 'SelectIngredients' | 'ShowRecipes';
 
 export default {
   data() {
     return {
-      ingredientes: [] as string[]
+      ingredientes: [] as string[],
+      content: 'SelectIngredients' as Page,
     };
   },
-  components: { SelectIngredients, Tag },
+  components: { SelectIngredients, Tag, YourList, ShowRecipes },
   methods: {
     addIngredient(ingrediente: string) {
       this.ingredientes.push(ingrediente)
     },
     removeIngredient(ingrediente: string) {
       this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
+    },
+    navigate(page: Page) {
+      this.content = page
     }
   }
 }
