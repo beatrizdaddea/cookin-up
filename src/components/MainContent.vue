@@ -1,19 +1,13 @@
 <template>
   <main class="conteudo-principal">
-    <section>
-      <YourList :ingredientes="ingredientes" />
-    </section>
-    
-    <SelectIngredients
-     v-if="content === 'SelectIngredients'"
-     @add-ingredient="addIngredient" 
-     @remove-ingredient="removeIngredient" 
-     @find-recipes="navigate('ShowRecipes')"
-     />
-     <ShowRecipes
-        v-else-if="content === 'ShowRecipes'"
-        @editar-receitas="navigate('SelectIngredients')"
-      />
+    <YourList :ingredientes="ingredientes" />
+
+    <KeepAlive>
+      <SelectIngredients v-if="content === 'SelectIngredients'" @add-ingredient="addIngredient"
+        @remove-ingredient="removeIngredient" @find-recipes="navigate('ShowRecipes')" />
+      <ShowRecipes v-else-if="content === 'ShowRecipes'" @editar-receitas="navigate('SelectIngredients')" />
+    </KeepAlive>
+
   </main>
 </template>
 

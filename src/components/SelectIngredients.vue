@@ -24,6 +24,7 @@ import type ICategory from '@/interfaces/ICategory';
 import CategoryCard from './CategoryCard.vue';
 
 export default {
+  name: 'SelectIngredients',
   data() {
     return {
       categorias: [] as ICategory[]
