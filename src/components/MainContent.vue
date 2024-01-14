@@ -5,7 +5,11 @@
     <KeepAlive>
       <SelectIngredients v-if="content === 'SelectIngredients'" @add-ingredient="addIngredient"
         @remove-ingredient="removeIngredient" @find-recipes="navigate('ShowRecipes')" />
-      <ShowRecipes v-else-if="content === 'ShowRecipes'" @editar-receitas="navigate('SelectIngredients')" />
+      <ShowRecipes 
+      v-else-if="content === 'ShowRecipes'"
+       @editar-receitas="navigate('SelectIngredients')" 
+       :ingredientes="ingredientes"
+       />
     </KeepAlive>
 
   </main>

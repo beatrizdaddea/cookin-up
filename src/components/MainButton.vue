@@ -1,3 +1,9 @@
+<template>
+  <button class="paragrafo-lg botao-principal">
+    {{ texto }}
+  </button>
+</template>
+
 <script lang="ts">
 export default {
   props: {
@@ -5,12 +11,6 @@ export default {
   }
 }
 </script>
-
-<template>
-  <button class="paragrafo-lg botao-principal">
-    {{ texto }}
-  </button>
-</template>
 
 <style scoped>
 .botao-principal {

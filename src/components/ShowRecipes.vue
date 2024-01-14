@@ -1,25 +1,3 @@
-<script lang="ts">
-import { getRecipes } from '@/http';
-import type IRecipes from '@/interfaces/IRecipes';
-import RecipeCard from './RecipeCard.vue';
-import MainButton from './MainButton.vue';
-
-export default {
-  data() {
-    return {
-      receitasEncontradas: [] as IRecipes[]
-    };
-  },
-  async created() {
-    const receitas = await getRecipes();
-
-    this.receitasEncontradas = receitas.slice(0, 8);
-  },
-  components: { MainButton, RecipeCard },
-  emits: ['editarReceitas']
-}
-</script>
-
 <template>
   <section class="mostrar-receitas">
     <h1 class="cabecalho titulo-receitas">Receitas</h1>
@@ -45,13 +23,45 @@ export default {
         Ops, não encontramos resultados para sua combinação. Vamos tentar de novo?
       </p>
 
-      <img src="../assets/imagens/sem-receitas.png"
+      <img src="../assets/images/sem-receitas.png"
         alt="Desenho de um ovo quebrado. A gema tem um rosto com uma expressão triste.">
     </div>
 
     <MainButton texto="Editar lista" @click="$emit('editarReceitas')" />
   </section>
 </template>
+
+<script lang="ts">
+import { getRecipes } from '@/http';
+import type IRecipes from '@/interfaces/IRecipes';
+import RecipeCard from './RecipeCard.vue';
+import MainButton from './MainButton.vue';
+import { itensInList } from '@/operations/lists';
+import type { PropType } from 'vue';
+
+
+export default {
+  props:{
+    ingredientes: { type: Array as PropType<string[]>, required: true },
+  },
+  data() {
+    return {
+      receitasEncontradas: [] as IRecipes[]
+    };
+  },
+  async created() {
+    const receitas = await getRecipes();
+
+    this.receitasEncontradas = receitas.filter((receita) => {
+      const matchingRecipes = itensInList(receita.ingredientes, this.ingredientes)
+      return matchingRecipes;
+    });
+  },
+  components: { MainButton, RecipeCard },
+  emits: ['editarReceitas']
+}
+</script>
+
 
 <style scoped>
 .mostrar-receitas {

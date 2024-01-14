@@ -1,13 +1,3 @@
-<script lang="ts">
-import type IRecipes from '@/interfaces/IRecipes';
-import type { PropType } from 'vue';
-export default {
-  props: {
-    receita: { type: Object as PropType<IRecipes>, required: true }
-  }
-}
-</script>
-
 <template>
   <article class="receita">
     <header class="receita__cabecalho">
@@ -21,6 +11,16 @@ export default {
     </section>
   </article>
 </template>
+
+<script lang="ts">
+import type IRecipes from '@/interfaces/IRecipes';
+import type { PropType } from 'vue';
+export default {
+  props: {
+    receita: { type: Object as PropType<IRecipes>, required: true }
+  }
+}
+</script>
 
 <style scoped>
 .receita {

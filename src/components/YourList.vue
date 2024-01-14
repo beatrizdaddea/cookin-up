@@ -1,15 +1,3 @@
-<script lang="ts">
-import type { PropType } from 'vue';
-import Tag from './Tag.vue';
-
-export default {
-  components: { Tag },
-  props: {
-    ingredientes: { type: Array as PropType<string[]>, required: true }
-  },
-}
-</script>
-
 <template>
   <section>
     <span class="subtitulo-lg sua-lista-texto">
@@ -28,6 +16,18 @@ export default {
     </p>
   </section>
 </template>
+
+<script lang="ts">
+import type { PropType } from 'vue';
+import Tag from './Tag.vue';
+
+export default {
+  components: { Tag },
+  props: {
+    ingredientes: { type: Array as PropType<string[]>, required: true }
+  },
+}
+</script>
 
 <style scoped>
 .sua-lista-texto {
